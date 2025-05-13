@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <div class="background"></div>
+    <header>
+        <div>
+            <a href=""><img src="img/Login2.png" alt="Welcome"></a>
+            <h1>Welcome</h1>
+        </div>
+    </header>
+    <main>
+        <section class="center-box">
+            <h2 id="login-h2">Login</h2>
+            <form action="/login/process" method="post">
+                <div class="form-group">
+                    <label for="email"></label>
+                    <div class="input-wrapper">
+                        <img src="img/email.png" alt="email">
+                        <input type="text" id="email" name="email" required placeholder="  email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password"></label>
+                    <div class="input-wrapper">
+                        <img src="img/password.png" alt="password">
+                        <input type="password" id="password" name="password" required placeholder="  password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <!-- <img src="img/Login.png" alt="Login"> -->
+                   <button class="login-btn">sign in</button>
+                </div>
+            </form>
+            <div id="register-1">
+                <a href="register.html">新規登録</a>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
