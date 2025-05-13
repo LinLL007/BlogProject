@@ -1,0 +1,48 @@
+/* reset.css - ブラウザのデフォルトスタイルをリセットする */
+
+/* すべての要素のマージンとパディングをリセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* ボックスのサイズをborderまで含めるようにする */
+}
+
+/* body の基本フォントや色を設定 */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  background-color: #fff; /* 背景色を白に設定 */
+  color: #000; /* 文字色を黒に設定 */
+}
+
+/* aタグ（リンク）の下線と色をリセット */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* リストのスタイルを削除 */
+ul, ol {
+  list-style: none;
+}
+
+/* 画像をレスポンシブに */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* フォーム関連の要素を統一（必要に応じて） */
+input, button, textarea, select {
+  font: inherit;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+/* テーブルのボーダーを結合 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
