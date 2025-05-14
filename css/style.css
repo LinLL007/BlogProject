@@ -8,10 +8,87 @@
     background-image: url('../img/heke.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.9;
+    opacity: 0.8;
     z-index: -1;
 }
 
+/* register */
+.register-section-details {
+    width: 100%;
+    max-width: 600px;
+    margin: 10% auto;
+    padding: 50px;
+    background-color: rgba(179, 180, 206, 0.32);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+/* blog_register_but */
+.blog_register_but {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.365);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+
+}
+
+.blog_register_but:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    transform: scale(1.35);
+}
+
+
+/* input */
+.register-section-details_flex input {
+    flex: 1;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #ffffff8f;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.register-section-details_flex input:focus {
+    outline: none;
+    border: 1px solid #007bff;
+    background-color: #f0f8ff;
+}
+
+.register-section-details_flex {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 40px;
+}
+
+/* 画像 */
+.image-upload-transparent {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 40px;
+}
+
+
+/* textarea */
+.register-section-details_flex textarea {
+    background-color: #ffffff8f;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 85%;
+    height: 110px;
+}
+
+
+/* ===list=== */
 footer {
     position: fixed;
     bottom: 0;
@@ -34,6 +111,12 @@ header .inner {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 50px;
 }
 
 .logo img {

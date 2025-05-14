@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlogList</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
@@ -14,31 +14,33 @@
     <header>
         <div class="inner">
             <div class="logo">
-                <a href="#"><img src="img/blog.png" alt=""></a>
-                <h2>よこそう～～～</h2>
+                <a href="#"><img th:src="@{/img/blog.png}" alt=""></a>
+                <h2>よこそう～</h2>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="検索..." class="search-input">
+                <button class="search-button"></button>
             </div>
             <ul class="list">
-                <li></li>
+                <li th:text="${accountEmail}"></li>
                 <li><a href="">Home</a></li>
-                <li><a href="">BlogRegister</a></li>
-                <li><a href="">Logout</a></li>
+                <li><a th:href="@{/blog/register}">BlogRegister</a></li>
+                <li><a th:href="@{/account/logout}">Logout</a></li>
             </ul>
         </div>
-
     </header>
     <main>
         <article>
             <div class="welcome-box">
-
                 <h2>ブログ一覧</h2>
             </div>
             <ul class="products">
-                <li>
-                    <a href="">
-                        <img src="" alt="">
-                        <p></p>
-                        <p></p>
-                        <p></p>
+                <li th:each="blog:${blogList}">
+                    <a th:href="@{/blog/edit/{blogId}(blogId=${blog.blogId})}">
+						<img th:src="@{/blog-img/{imagePath}(imagePath=${blog.blogImage})}" alt="">
+                        <p th:text="${blog.categoryName}"></p><br>
+                        <p th:text="${blog.title}"></p>
+                        <p th:text="${blog.content}"></p>
                     </a>
                 </li>
 

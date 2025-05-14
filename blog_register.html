@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="background"></div>
+    <header>
+        <div class="inner">
+            <div class="logo">
+                <a href="#"><img src="img/blog.png" alt=""></a>
+                <h2>よこそう～</h2>
+            </div>
+            <ul class="list">
+                <li></li>
+                <li><a href="">Home</a></li>
+                <li><a href="">BlogRegister</a></li>
+                <li><a href="">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <section>
+            <div class="welcome-box">
+                <h2>BlogRegister</h2>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="register-section-details">
+                    <div class="register-section-details_flex">
+                        <div>タイトル</div>
+                        <input type="text" name="title" id="title">
+                    </div>
+                    <div class="register-section-details_flex">
+                        <div>カテゴリ</div>
+                        <input type="text" name="category_name" id="category_name">
+                    </div>
+                    <div class="image-upload-transparent">
+                        <div>画像</div>
+                        <input type="file" name="blogImage" class="file-input">
+                    </div>
+                    <div class="register-section-details_flex">
+                        <div>本文</div>
+                        <textarea name="blogDescription"></textarea>
+                    </div>
+                    <div class="register-section-details_flex">
+                        <button class="blog_register_but">登録</button>
+                        <button class="blog_register_but" onclick="history.back();" type="button">戻る</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <div>
+            <small>&copy; 2025 LLL</small>
+        </div>
+    </footer>
+
+</body>
+
+</html>

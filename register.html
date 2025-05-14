@@ -5,41 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
 </head>
 
 <body>
     <div class="background"></div>
     <header>
         <div>
-            <a href=""><img src="img/Login2.png" alt="Welcome"></a>
+            <a href=""><img th:src="@{/img/Login2.png}" alt="Welcome"></a>
             <h1>Welcome</h1>
         </div>
     </header>
     <main>
         <section class="center-box">
             <h2 id="register-h2">Register</h2>
-            <form action="" method="post">
+            <form th:action="@{/register/process}" method="post">
+				<div th:if="${error}">
+					<p th:text="${error}" class="error-message"></p>
+				</div>
                 <div class="form-group">
                     <label for="email"></label>
                     <div class="input-wrapper">
-                        <img src="img/username.png" alt="UserName">
-                        <input type="text" name="username" id="username" required placeholder="  UserName">
+                        <img th:src="@{/img/username.png}" alt="accountName">
+                        <input type="text" name="accountName" id="accountName" required placeholder="  AccountName">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email"></label>
                     <div class="input-wrapper">
-                        <img src="img/email.png" alt="email">
+                        <img th:src="@{/img/email.png}" alt="email">
                         <input type="text" name="email" id="email" required placeholder="  email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password"></label>
                     <div class="input-wrapper">
-                        <img src="img/password.png" alt="password">
-                        <input type="password" name="password" id="password">
+                        <img th:src="@{/img/password.png}" alt="password">
+                        <input type="password" name="password" id="password" required placeholder="  password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -48,7 +51,7 @@
                 </div>
             </form>
             <div id="login-1">
-                <a href="login.html">ログイン</a>
+                <a th:href="@{/login}">ログイン</a>
             </div>
         </section>
     </main>
