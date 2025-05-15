@@ -11,6 +11,7 @@ import blog.com.modesls.entity.Account;
 import blog.com.services.AccountService;
 import jakarta.servlet.http.HttpSession;
 
+//フロントエンドからのリクエストを処理する
 @Controller
 public class LoginController {
 	// AccountServiceが使えるように宣言

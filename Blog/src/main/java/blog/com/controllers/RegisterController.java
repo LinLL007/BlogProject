@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import blog.com.services.AccountService;
 
+//フロントエンドからのリクエストを処理する
 @Controller
 public class RegisterController {
 	// AccountServiceが使えるように宣言

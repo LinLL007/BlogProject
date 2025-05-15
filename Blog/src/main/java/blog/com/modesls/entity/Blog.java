@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+//データベースのテーブルをマッピングする
 @Entity
 public class Blog {
 	// account_id

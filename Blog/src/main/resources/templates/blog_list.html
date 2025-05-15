@@ -18,15 +18,15 @@
                 <h2>よこそう～</h2>
 				<p th:text="${accountName}" class="accountName"></p>
             </div>
-            <div class="search-container">
-                <input type="text" placeholder="検索..." class="search-input">
+            <form method="get" action="/blog/list" class="search-container">
+                <input type="text" name="keyword" th:value="${keyword}" placeholder="検索..." class="search-input">
                 <button class="search-button"></button>
-            </div>
+            </form>
             <ul class="list">
                
-                <li><a href="">Home</a></li>
-                <li><a th:href="@{/blog/register}">BlogRegister</a></li>
-                <li><a th:href="@{/account/logout}">Logout</a></li>
+                <li><a th:href="@{/blog/list}">Home</a></li>
+				<li><a th:href="@{/blog/register}">BlogRegister</a></li>
+				<li><a th:href="@{/account/logout}">Logout</a></li>
             </ul>
         </div>
     </header>
@@ -35,12 +35,12 @@
             <div class="welcome-box">
                 <h2>ブログ一覧</h2>
             </div>
-            <ul class="products">
+            <ul class="blog">
                 <li th:each="blog:${blogList}">
                     <a th:href="@{/blog/edit/{blogId}(blogId=${blog.blogId})}">
 						<img th:src="@{/blog-img/{imagePath}(imagePath=${blog.blogImage})}" alt="">
-                        <p th:text="${blog.categoryName}"></p><br>
-                        <p th:text="${blog.title}"></p>
+						<h2 th:text="${blog.title}"></h2>
+						<p th:text="${blog.categoryName}"></p>
                         <p th:text="${blog.content}"></p>
                     </a>
                 </li>

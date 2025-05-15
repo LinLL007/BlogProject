@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import blog.com.modesls.dao.AccountDao;
 import blog.com.modesls.entity.Account;
 
+//ビジネスロジック（処理の中身）を担当する
 @Service
 public class AccountService {
 	@Autowired

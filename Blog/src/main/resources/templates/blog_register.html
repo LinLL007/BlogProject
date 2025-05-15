@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
@@ -14,14 +14,15 @@
     <header>
         <div class="inner">
             <div class="logo">
-                <a href="#"><img src="img/blog.png" alt=""></a>
+                <a href="#"><img th:src="@{/img/blog.png}" alt=""></a>
                 <h2>よこそう～</h2>
+				<p th:text="${accountName}" class="accountName"></p>
             </div>
             <ul class="list">
                 <li></li>
-                <li><a href="">Home</a></li>
-                <li><a href="">BlogRegister</a></li>
-                <li><a href="">Logout</a></li>
+                <li><a th:href="@{/blog/list}">Home</a></li>
+                <li><a th:href="@{/blog/register}">BlogRegister</a></li>
+                <li><a th:href="@{/account/logout}">Logout</a></li>
             </ul>
         </div>
     </header>
@@ -30,7 +31,7 @@
             <div class="welcome-box">
                 <h2>BlogRegister</h2>
             </div>
-            <form action="" method="post" enctype="multipart/form-data">
+            <form th:action="@{/blog/register/process}" method="post" enctype="multipart/form-data">
                 <div class="register-section-details">
                     <div class="register-section-details_flex">
                         <div>タイトル</div>
@@ -38,7 +39,7 @@
                     </div>
                     <div class="register-section-details_flex">
                         <div>カテゴリ</div>
-                        <input type="text" name="category_name" id="category_name">
+                        <input type="text" name="categoryName" id="categoryName">
                     </div>
                     <div class="image-upload-transparent">
                         <div>画像</div>
@@ -46,7 +47,7 @@
                     </div>
                     <div class="register-section-details_flex">
                         <div>本文</div>
-                        <textarea name="blogDescription"></textarea>
+                        <textarea name="content"></textarea>
                     </div>
                     <div class="register-section-details_flex">
                         <button class="blog_register_but">登録</button>
