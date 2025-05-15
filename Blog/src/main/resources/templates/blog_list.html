@@ -16,13 +16,14 @@
             <div class="logo">
                 <a href="#"><img th:src="@{/img/blog.png}" alt=""></a>
                 <h2>よこそう～</h2>
+				<p th:text="${accountName}" class="accountName"></p>
             </div>
             <div class="search-container">
                 <input type="text" placeholder="検索..." class="search-input">
                 <button class="search-button"></button>
             </div>
             <ul class="list">
-                <li th:text="${accountEmail}"></li>
+               
                 <li><a href="">Home</a></li>
                 <li><a th:href="@{/blog/register}">BlogRegister</a></li>
                 <li><a th:href="@{/account/logout}">Logout</a></li>

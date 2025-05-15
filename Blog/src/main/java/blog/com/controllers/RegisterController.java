@@ -11,6 +11,7 @@ import blog.com.services.AccountService;
 
 @Controller
 public class RegisterController {
+	// AccountServiceが使えるように宣言
 	@Autowired
 	private AccountService accountService;
 
@@ -23,7 +24,9 @@ public class RegisterController {
 	// 登録処理
 	@PostMapping("/register/process")
 	public String registerProcess(@RequestParam String accountName, @RequestParam String email,
-			@RequestParam String password,Model model) {
+			@RequestParam String password, Model model) {
+		// createAccountメソッドを呼び出し、true場合login画面に遷移
+		// そうでない場合、エラー文出す、registerにとどまります
 		if (accountService.createAccount(accountName, email, password)) {
 			return "login.html";
 		} else {

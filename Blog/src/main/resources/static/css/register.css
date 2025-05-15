@@ -12,20 +12,27 @@
     z-index: -1;
 }
 
-/* 新規登録 */
-#register-1 a {
+/* error */
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* login */
+#login-1 a {
     color: rgb(17, 23, 23);
     text-decoration: underline;
 }
 
-#register-1 a:hover {
+#login-1 a:hover {
     color: rgb(245, 248, 252);
     text-decoration-color: rgba(5, 5, 5, 0.299);
     text-decoration-thickness: 2px;
 }
 
 /* ボタン */
-.login-btn {
+.register-btn {
     padding: 10px 20px;
     background-color: rgba(0, 0, 0, 0.365);
     color: rgb(255, 255, 255);
@@ -34,10 +41,11 @@
     font-size: 16px;
 }
 
-.login-btn:hover {
+.register-btn:hover {
     background-color: rgba(0, 0, 0, 0.6);
     transform: scale(1.35);
 }
+
 
 /* 入力欄 */
 .form-group {
@@ -70,14 +78,8 @@
     margin-right: 8px;
 }
 
-.input-wrapper input {
-    flex: 1;
-    padding: 8px;
-    font-size: 16px;
-}
-
 /* タイトル */
-#login-h2 {
+#register-h2 {
     font-size: 46px;
     margin-bottom: 30px;
 }

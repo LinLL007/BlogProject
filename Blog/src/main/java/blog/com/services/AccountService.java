@@ -12,6 +12,10 @@ public class AccountService {
 	public AccountDao accountDao;
 
 	// 登録処理
+	// もしfindByEmail==nullだったら登録処理します
+	// saveメソッドを呼び出し登録処理する
+	// 保存ができたらtrue
+	// そうでない場合、保存処理失敗 false
 	public boolean createAccount(String accountName, String email, String password) {
 		if (accountDao.findByEmail(email) == null) {
 			accountDao.save(new Account(accountName, email, password));
@@ -22,6 +26,8 @@ public class AccountService {
 	}
 
 	// ログイン処理
+	// ログインしている人の情報をコントローラークラスに渡す
+	// 存在いない場null戻る
 	public Account createLogin(String email, String password) {
 		return accountDao.findByEmailAndPassword(email, password);
 	}

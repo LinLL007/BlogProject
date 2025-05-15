@@ -11,7 +11,7 @@ public interface AccountDao extends JpaRepository<Account, Long> {
 	Account save(Account account);
 	
 	// SELECT * FROM account WHERE email = ?
-	// 用途：管理者の登録処理をする時に、同じメールアドレスがあったらば登録させないようにする
+	// 用途：アカウントの登録処理をする時に、同じメールアドレスがあったらば登録させないようにする
 	Account findByEmail(String email);
 	
 	// SELECT * FROM account WHERE admin_email=? AND password=?

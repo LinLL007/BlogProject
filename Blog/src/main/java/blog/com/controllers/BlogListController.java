@@ -14,9 +14,11 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BlogListController {
+	// Sessionが使えるように宣言
 	@Autowired
 	private HttpSession session;
 	
+	// BlogServiceが使えるように宣言
 	@Autowired
 	private BlogService blogService;
 
@@ -25,17 +27,18 @@ public class BlogListController {
 	public String getBlogList(Model model) {
 		// セッションからログインしている人の情報を取得
 		Account account = (Account) session.getAttribute("loginAccountInfo");
-		// ログインしている人の名前の情報を画面に渡して商品一覧のhtmlを表示
-		if(account==null) {
+		// account==null ログイン画面にリダイレクトする
+		if (account == null) {
 			return "redirect:/login";
-		}else {
-			//商品の情報を取得する
+		} else {
+			// ブログの情報を取得する
 			List<Blog> blogList = blogService.selectAllBlogList(account.getAccountId());
-			model.addAttribute("accountEmail",account.getEmail());	
-			model.addAttribute("blogList",blogList);
+			// ログインしている人の名前の情報を画面に渡してブログ一覧のhtmlを表示
+			model.addAttribute("accountName", account.getAccountName());
+			model.addAttribute("blogList", blogList);
 			return "blog_list";
 		}
-	
+
 	}
-	
+
 }
