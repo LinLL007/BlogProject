@@ -16,11 +16,13 @@ import jakarta.servlet.http.HttpSession;
 //フロントエンドからのリクエストを処理する
 @Controller
 public class BlogListController {
-	// Sessionが使えるように宣言
+	// Session を使用できるように宣言
+	// @Autowired は自動的に使いたいインスタンスを探して、変数に注入する
 	@Autowired
 	private HttpSession session;
 
-	// BlogServiceが使えるように宣言
+	// BlogService　 を使用できるように宣言
+	// @Autowired は自動的に使いたいインスタンスを探して、変数に注入する
 	@Autowired
 	private BlogService blogService;
 
