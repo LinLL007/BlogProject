@@ -14,71 +14,98 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import blog.com.modesls.entity.Account;
+import blog.com.models.entity.Account;
 import blog.com.services.BlogService;
 import jakarta.servlet.http.HttpSession;
 
-//フロントエンドからのリクエストを処理する
+//フロントエンドからのリクエストを処理するコントローラクラス
 @Controller
 public class BlogRegisterController {
-	// Sessionが使えるように宣言
+	// HttpSessionが使えるように宣言
+	// @Autowiredは自動的に使いたいインスタンスを探して、変数に注入する
 	@Autowired
 	private HttpSession session;
 
 	// BlogServiceが使えるように宣言
+	// @Autowiredは自動的に使いたいインスタンスを探して、変数に注入する
 	@Autowired
 	private BlogService blogService;
 
-	// ブログ登録画面の表示
+	
+	/**
+	 * ブログ登録画面の表示
+	 *
+	 * @GetMapping("/blog/register"): ブラウザから HTTP GET リクエストで、
+	 * /blog/registerにアクセスされたときに、このメソッドが実行されます。
+	 * 
+	 * Model model: コントローラから ページへデータを渡すために使います
+	 */
 	@GetMapping("/blog/register")
 	public String getBlogRegisterPage(Model model) {
-		// セッションからログインしている人の情報をaccountという変数に渡す
+		/**
+		 * セッションからログインしているユーザー情報を取得し、account に格納。
+		 *　account が null の場合、ログインしていないためログイン画面へリダイレクト。
+		 */
 		Account account = (Account) session.getAttribute("loginAccountInfo");
-		// もし、account == null、 ログイン画面にリダイレクトする
-		// そうでない場合、ログインしている人の名前を画面に渡す
-		// ブログ登録のhtmlを表示させる
 		if (account == null) {
 			return "redirect:/login";
 		} else {
+			// ログインしている場合、ユーザー名をモデルにセットして登録画面を表示
 			model.addAttribute("accountName", account.getAccountName());
 			return "blog_register";
 		}
 	}
 
-	// ブログの登録処理
+	
+	/**
+	 * ブログの登録処理
+	 * 
+	 * @PostMapping("/blog/register/process"):
+	 * ブログ登録画面から送信されたデータを受け取り、ブログの更新処理を行う。
+	 *
+	 *@RequestParam：HTTPリクエストのパラメータを受け取るアノテーションです。
+	 *
+	 *@RequestParam String title：
+	 * フォームから送信されたタイトルを受け取ります。
+	 * 
+	 *@RequestParam String categoryName：
+	 * カテゴリ名を受け取ります。
+	 * 
+	 * @RequestParam MultipartFile blogImage：
+	 * アップロードされた画像ファイルを受け取ります。
+	 * MultipartFile：アップロードされたファイルを処理するためのインターフェースです。
+	 *
+	 * @RequestParam String content：
+	 * ブログの本文を受け取ります。
+	 */
 	@PostMapping("/blog/register/process")
-	//@RequestParam:URLやフォームのパラメータを受け取る
+	// @RequestParam:URLやフォームのパラメータを受け取る
 	public String blogRegisterProcess(@RequestParam String title, @RequestParam String categoryName,
-			@RequestParam MultipartFile blogImage,@RequestParam  String content) {
-		// セッションからログインしている人の情報をaccountという変数に渡す
-		Account account = (Account) session.getAttribute("loginAccountInfo");
-		// もし、account == null、 ログイン画面にリダイレクトする
-		// そうでない場合、画像のファイル名を取得
-		// 画像のアップロード
-		// もし、同じファイルの名前がなかったら保存
-		// ブログの一覧画像にリダイレクトする
-		// そうでない場合、ブログ登録画面にとどまります
+			@RequestParam MultipartFile blogImage, @RequestParam String content) {
 		/**
-		 * 現在の日時情報を元に、ファイル名を作成しています。SimpleDateFormatクラスを使用して、日時のフォーマットを指定している。
-		 * 具体的には、"yyyy-MM-dd-HH-mm-ss-"の形式でフォーマットされた文字列を取得している。
-		 * その後、blogImageオブジェクトから元のファイル名を取得し、フォーマットされた日時文字列と連結して、fileName変数に代入
-		 **/
+		 * セッションからログインしているユーザー情報を取得し、account に格納。
+		 *　account が null の場合、ログインしていないためログイン画面へリダイレクト。
+		 */
+		Account account = (Account) session.getAttribute("loginAccountInfo");
 		if (account == null) {
 			return "redirect:/login";
 		} else {
-			// ファイルの名前を取得
+			 /**
+	         * 現在の日時をもとにファイル名を生成します。
+	         * たとえば "2025-05-15-14-30-00-元のファイル名" のようになります。
+	         * blogImage から取得したファイル名を、日時の文字列と連結します。
+	         */
 			String fileName = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-").format(new Date())
 					+ blogImage.getOriginalFilename();
-			// ファイルの保存作業
+			// 画像ファイルを保存します
 			try {
 				Files.copy(blogImage.getInputStream(), Path.of("src/main/resources/static/blog-img/" + fileName));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
+			// ブログを登録し、成功したら一覧画面へリダイレクト、失敗したらブログ登録画面にとどまります
 			if (blogService.createBlog(title, categoryName, fileName, content, account.getAccountId())) {
 				return "redirect:/blog/list";
-
 			} else {
 				return "blog_register";
 			}

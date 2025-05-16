@@ -7,32 +7,46 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import blog.com.modesls.dao.BlogDao;
-import blog.com.modesls.entity.Blog;
+import blog.com.models.dao.BlogDao;
+import blog.com.models.entity.Blog;
 
-//ビジネスロジック（処理の中身）を担当する
+//ビジネスロジック（業務処理）を担当するサービスクラス
 @Service
 public class BlogService {
 	// BlogDaoが使えるように宣言
+	// @Autowiredは自動的に使いたいインスタンスを探して、変数に注入する
 	@Autowired
 	private BlogDao blogDao;
 
-	// ブログ一覧のチェック
+	
+	/**
+	 * すべてのブログ記事を取得する。
+	 *
+	 * @return ブログ記事のリスト
+	 */
 	public List<Blog> selectAllBlogList() {
 		return blogDao.findAll();
 	}
 
-	// ブログ一覧の検索
+	/**
+	 * タイトルにキーワードを含むブログ記事を検索する。
+	 *
+	 * @param keyword 検索に使用するキーワード
+	 * @return キーワードを含むブログ記事のリスト
+	 */
 	public List<Blog> searchBlogsByTitle(String keyword) {
 	    return blogDao.findByTitleContaining(keyword);
 	}
 
 	
 	
-	// ブログの登録処理チェック
-	// もし、findByTitle==null,保存処理 true
-	// そうでない場合 false
+	/**
+	 * ブログの登録処理を行う。
+	 * 指定されたタイトルのブログが未登録の場合、新規ブログを保存しtrueを返す。
+	 * すでに同じタイトルのブログが存在する場合は登録せずfalseを返す。
+	 */
 	public boolean createBlog(String title, String categoryName, String blogImage, String content, Long accountId) {
 		if (blogDao.findByTitle(title) == null) {
 			blogDao.save(new Blog(title, categoryName, blogImage, content, accountId));
@@ -42,10 +56,11 @@ public class BlogService {
 		}
 	}
 
-	// 編集画面を表示するときのチェック
-	// もし、blogId == null
-	// そうでない場合
-	// findByBlogIdの情報をコントローラークラスに渡す
+	/**
+	 * 編集画面表示時のチェック処理を行う。
+	 * blogIdがnullの場合はnullを返し、
+	 * そうでなければ該当するブログ情報を取得して返す。
+	 */
 	public Blog blogEditCheck(Long blogId) {
 		if (blogId == null) {
 			return null;
@@ -54,14 +69,16 @@ public class BlogService {
 		}
 	}
 
-	// 更新処理のチェックのblogId
-	// もし、blogId==nullだったら、更新処理はしない falseを返す
-	// そうでない場合、更新処理をする
-	// もし、blog==nullだったら、更新処理はしない falseを返す
-	// そうでない場合、
-	// コントローラークラスからもらった、blogIdを使って、編集する前の、データを取得
-	// 変更するべきところだけ、セッターを使用してデータの更新をする
-	// trueを返す
+	/** 
+	 * 更新処理のチェックのblogId
+	 * もし、blogId==nullだったら、更新処理はしない falseを返す
+	 * そうでない場合、更新処理をする
+	 * もし、blog==nullだったら、更新処理はしない falseを返す
+	 * そうでない場合、
+	 * コントローラークラスからもらった、blogIdを使って、編集する前の、データを取得
+	 * 変更するべきところだけ、セッターを使用してデータの更新をする
+	 * trueを返す
+	 */ 
 	public boolean blogUpdate(Long blogId, String title, String categoryName, String blogImage, String content) {
 		if (blogId == null) {
 			return false;
@@ -80,7 +97,13 @@ public class BlogService {
 		}
 	}
 
-	// 削除処理のチェック
+	/**
+	 * 指定されたブログIDに対応するブログを削除する。
+	 * ブログに関連する画像ファイルも存在すれば削除する。
+	 * 
+	 * @param blogId 削除対象のブログID
+	 * @return 削除成功ならtrue、blogIdがnull、該当ブログなし、または例外発生時はfalseを返す
+	 */
 	public boolean deleteBlog(Long blogId) {
 		if (blogId == null) {
 			return false;
@@ -108,6 +131,18 @@ public class BlogService {
 				return false;
 			}
 		}
+	}
+	@Transactional
+	public boolean updateViewCount(Blog blog) {
+	    System.out.println("Trying to update viewCount for blogId: " + blog.getBlogId() + ", viewCount: " + blog.getViewCount());
+	    try {
+	        blogDao.save(blog);
+	        System.out.println("Update success.");
+	        return true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
 
 }

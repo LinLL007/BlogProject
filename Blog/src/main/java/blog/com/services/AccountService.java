@@ -3,20 +3,22 @@ package blog.com.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import blog.com.modesls.dao.AccountDao;
-import blog.com.modesls.entity.Account;
+import blog.com.models.dao.AccountDao;
+import blog.com.models.entity.Account;
 
-//ビジネスロジック（処理の中身）を担当する
+// ビジネスロジック（業務処理）を担当するサービスクラス
 @Service
 public class AccountService {
+	// AccountDaoが使えるように宣言
+	// @Autowiredは自動的に使いたいインスタンスを探して、変数に注入する
 	@Autowired
 	public AccountDao accountDao;
 
-	// 登録処理
-	// もしfindByEmail==nullだったら登録処理します
-	// saveメソッドを呼び出し登録処理する
-	// 保存ができたらtrue
-	// そうでない場合、保存処理失敗 false
+	/**
+	 *  登録処理を行う。
+	 * 指定されたメールアドレスが未登録の場合、新規アカウントを保存しtrueを返す。
+	 * すでに登録済みの場合は登録せずfalseを返す。
+	 */
 	public boolean createAccount(String accountName, String email, String password) {
 		if (accountDao.findByEmail(email) == null) {
 			accountDao.save(new Account(accountName, email, password));
@@ -26,9 +28,11 @@ public class AccountService {
 		}
 	}
 
-	// ログイン処理
-	// ログインしている人の情報をコントローラークラスに渡す
-	// 存在いない場null戻る
+	/**
+	 * ログイン処理を行う。
+	 * 指定されたメールアドレスとパスワードに一致するアカウント情報を取得し、
+	 * 存在しない場合はnullを返す。
+	 */
 	public Account createLogin(String email, String password) {
 		return accountDao.findByEmailAndPassword(email, password);
 	}

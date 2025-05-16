@@ -13,6 +13,7 @@
 }
 
 
+
 /* blog */
 .blog {
     display: flex;
@@ -26,6 +27,7 @@
 .blog li {
     width: 350px;
 	height: 500px;
+	position: relative;
     background-color: rgba(179, 180, 206, 0.6);
     border-radius: 20px;
     overflow: hidden;
@@ -53,6 +55,17 @@ text-align: center;
     color: #333;
 }
 
+.blog li .view-count {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  margin: 0;
+}
 
 
 /* register */
@@ -201,6 +214,8 @@ header {
     border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
 }
+
+
 
 /* 検索 */
 .search-container {

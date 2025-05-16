@@ -13,16 +13,30 @@ import blog.com.services.AccountService;
 @Controller
 public class RegisterController {
 	// AccountServiceが使えるように宣言
+	// @Autowiredは自動的に使いたいインスタンスを探して、変数に注入する
 	@Autowired
 	private AccountService accountService;
 
-	// 登録画面の表示
+	/**
+	 * 登録画面の表示
+	 *
+	 * /register への GET リクエストを処理し、登録画面を返します。
+	 * 
+	 * @return 録画面のビュー名
+	 */
 	@GetMapping("/register")
 	public String getRegisterPage() {
 		return "register.html";
 	}
 
-	// 登録処理
+	/**
+	 * 登録処理
+	 * @RequestParam：HTTPリクエストのパラメータを受け取るアノテーションです。
+	 * @RequestParam String accountName　登録するユーザー名
+	 * @RequestParam String email　登録するメールアドレス
+	 * @RequestParam String password　登録するパスワード
+	 * Model model コントローラからビューへデータを渡すためのModelオブジェクト
+	 */
 	@PostMapping("/register/process")
 	public String registerProcess(@RequestParam String accountName, @RequestParam String email,
 			@RequestParam String password, Model model) {
