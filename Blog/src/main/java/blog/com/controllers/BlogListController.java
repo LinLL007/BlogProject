@@ -61,6 +61,8 @@ public class BlogListController {
 				// すべてのブログ情報を取得します。
 				blogList = blogService.selectAllBlogList();
 			}
+			// 編集用にアカウント名とブログ情報を画面に渡す
+			model.addAttribute("accountName", account.getAccountName());
 			// blogListをモデルに"blogList"という名前でセットし、 ページで表示できるようにします。
 			model.addAttribute("blogList", blogList);
 			// 処理が完了したら blog_list ページを表示します。

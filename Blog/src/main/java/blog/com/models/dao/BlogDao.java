@@ -13,9 +13,9 @@ public interface BlogDao extends JpaRepository<Blog, Long> {
 	// 保存処理と更新処理 insertとupdate
 	Blog save(Blog blog);
 
-	// SELECT * FROM blog
-	// 用途：ブログの一覧を表示させる時に使用
-	List<Blog> findAll();
+	// SELECT * FROM blog ORDER BY view_count DESC
+	// 用途：ブログの一覧を表示させる時に使用viewCountの降順で並び替えられています。
+	List<Blog> findAllByOrderByViewCountDesc();
 
 	// SELECT * FROM blog WHERE title=?
 	// 用途：ブログの登録チェックに使用（同じブログが登録されないようにする）

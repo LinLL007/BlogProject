@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduce</title>
+	<link rel="stylesheet" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <div class="background"></div>
+    <header>
+        <div class="inner">
+            <div class="logo">
+                <a href="#"><img th:src="@{img/blog.png}" alt="blog"></a>
+                <h2>よこそう～</h2>
+                <p th:text="${accountName}" class="accountName"></p>
+            </div>
+
+            <ul class="list">
+                <li><a href="/blog/list">Home</a></li>
+                <li><a href="/blog/register">BlogRegister</a></li>
+                <li><a href="/account/logout">Logout</a></li>
+            </ul>
+			<div class="list">
+				<a href=""><img th:src="@{/img/username.png}" alt="username"></a>
+			</div>
+        </div>
+    </header>
+
+    <main>
+        <article>
+            <div class="welcome-box">
+                <h2>自己紹介</h2>
+            </div>
+            <ul class="introduce">
+                <li>
+                    <div class="left-box">
+                        <div class="profile-image">
+                            <img th:src="@{/img/lufei.png}" alt="路飞头像">
+                        </div>
+                        <div class="profile-info">
+                            <dl>
+                                <dt>名前：</dt>
+                                <dd>モンキー・D・ルフィ</dd>
+                                <dt>年齢：</dt>
+                                <dd>19歳</dd>
+                                <dt>性別：</dt>
+                                <dd>男性</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <section class="personal-info">
+                        <h2>個人情報：</h2>
+                        <p>ここに詳細な情報を入れます。ここに詳細な情報を入れます。</p>
+                        <p>ここに詳細な情報を入れます。ここに詳細な情報を入れます。</p>
+                        <p>ここに詳細な情報を入れます。ここに詳細な情報を入れます。</p>
+                        <p>ここに詳細な情報を入れます。ここに詳細な情報を入れます。</p>
+                        <p>ここに詳細な情報を入れます。ここに詳細な情報を入れます。</p>
+                        <p>ここに詳細な情報を入れます。ここに詳細な情報を入れます。</p>
+                        <p>ここに詳細な情報を入れます。ここに詳細な情報を入れます。</p>
+                    </section>
+                </li>
+            </ul>
+
+        </article>
+    </main>
+
+    <footer>
+        <div>
+            <small>&copy; 2025 LLL</small>
+        </div>
+    </footer>
+
+</body>
+
+</html>

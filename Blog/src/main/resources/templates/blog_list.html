@@ -9,6 +9,20 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
+<script>
+	function thumbsUp(button){
+		const img = button.querySelector("img");
+		const src = img.getAttribute("src");
+		
+		if(src.includes("a1.png")){
+			img.setAttribute("src","/img/a2.png"); 
+		} else {
+			img.setAttribute("src","/img/a1.png"); 
+		}
+	}
+	
+</script>
+
 <body>
     <div class="background"></div>
     <header>
@@ -23,13 +37,16 @@
                 <button class="search-button"></button>
             </form>
             <ul class="list">
-               
                 <li><a th:href="@{/blog/list}">Home</a></li>
 				<li><a th:href="@{/blog/register}">BlogRegister</a></li>
 				<li><a th:href="@{/account/logout}">Logout</a></li>
             </ul>
+			<div class="list">
+				<a th:href="@{/introduce}"><img th:src="@{/img/username.png}" alt=""></a>
+			</div>
         </div>
     </header>
+	
     <main>
         <article>
             <div class="welcome-box">
@@ -42,13 +59,16 @@
 						<h2 th:text="${blog.title}"></h2>
 						<p th:text="${blog.categoryName}"></p>
                         <p th:text="${blog.content}"></p>
-						<p>閲覧数: <span th:text="${blog.viewCount}">0</span></p>
+						<p class="view-count">閲覧数: <span th:text="${blog.viewCount}">0</span></p>
                     </a>
+					<button class="thumbs-up" onclick="thumbsUp(this)">
+						<img th:src="@{/img/a1.png}">
+					</button>
                 </li>
-
             </ul>
         </article>
     </main>
+	
     <footer>
         <div>
             <small>&copy; 2025 LLL</small>

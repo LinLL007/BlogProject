@@ -63,15 +63,8 @@ public class BlogEditController {
 			if (blog == null) {
 				return "redirect:/blog/list";
 			} else {
-				
-				
-				
-				
-				blog.setViewCount(blog.getViewCount() + 1);
-				boolean updated = blogService.updateViewCount(blog);
-				
-				
-
+				// blogがnullでない場合、blogServiceでupdateViewCountメソッドを呼び出し閲覧数を更新する
+				blogService.updateViewCount(blog);
 				// 編集用にアカウント名とブログ情報を画面に渡す
 				model.addAttribute("accountName", account.getAccountName());
 				model.addAttribute("blog", blog);

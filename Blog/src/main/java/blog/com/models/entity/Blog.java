@@ -9,18 +9,6 @@ import jakarta.persistence.Id;
 //データベースのテーブルをマッピングする
 @Entity
 public class Blog {
-	 @Column(name = "view_count")
-	private int viewCount = 0;
-
-	// getter, setter
-	public int getViewCount() {
-		return viewCount;
-	}
-
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
-	}
-
 	// account_id
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,6 +28,9 @@ public class Blog {
 
 	// accountId
 	private Long accountId;
+	
+	// viewCount
+	private int viewCount = 0;
 
 	// 空のコンストラクタ
 	public Blog() {
@@ -102,6 +93,14 @@ public class Blog {
 
 	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
+	}
+
+	public int getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
 	}
 
 }

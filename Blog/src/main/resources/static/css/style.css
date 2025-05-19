@@ -12,7 +12,63 @@
     z-index: -1;
 }
 
+/* 自己紹介 */
+.introduce {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 50px;
+}
 
+.introduce li {
+    width: 850px;
+    height: 600px;
+    position: relative;
+    background-color: rgba(179, 180, 206, 0.6);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    padding: 50px;
+    display: flex;
+}
+
+.profile-image img {
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-info dl {
+    margin: 0 0 10px 40px;
+}
+
+.profile-info p {
+    margin: 0 0 10px 40px;
+}
+
+
+dl dt {
+    font-weight: bold;
+}
+
+dl dd {
+    margin: 0 0 10px 20px;
+}
+
+ /* 個人情報： */
+.personal-info {
+    padding: 50px;
+}
+
+.personal-info h2 {
+    padding: 20px;
+    text-align: center;
+}
 
 /* blog */
 .blog {
@@ -58,13 +114,34 @@ text-align: center;
 .blog li .view-count {
   position: absolute;
   bottom: 10px;
-  right: 10px;
+  left: 10px;
   background: rgba(255, 255, 255, 0.2);
   padding: 3px 8px;
   border-radius: 4px;
   font-size: 0.9em;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
   margin: 0;
+}
+
+/* いいね機能 */
+.blog li .thumbs-up {
+  height: 25px;
+  width: 25px;
+  bottom: 15px;
+  right: 15px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.blog li .thumbs-up img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.blog li .thumbs-up:hover img{
+    transform: scale(1.45);
 }
 
 
@@ -169,6 +246,13 @@ footer {
 }
 
 /* header */
+header {
+    width: 100%;
+    margin: 0 auto;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
 header .inner {
     display: flex;
     justify-content: space-between;
@@ -187,11 +271,11 @@ header .inner {
     margin-left: 20%;
 }
 
-.list {
+.inner .list {
     list-style: none;
     display: flex;
     gap: 30px;
-    margin: 0 5% 0 0;
+    margin: 0 30px 0 0;
     padding: 0;
 }
 
@@ -207,15 +291,6 @@ header .inner {
     color: rgba(111, 130, 154, 0.514);
     transform: scale(1.35);
 }
-
-header {
-    width: 100%;
-    margin: 0 auto;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-}
-
-
 
 /* 検索 */
 .search-container {

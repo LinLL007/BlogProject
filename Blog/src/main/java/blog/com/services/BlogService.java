@@ -20,14 +20,11 @@ public class BlogService {
 	@Autowired
 	private BlogDao blogDao;
 
-	
 	/**
-	 * すべてのブログ記事を取得する。
-	 *
-	 * @return ブログ記事のリスト
+	 * すべてのブログ記事を取得する。 viewCountの降順で並び替えられています。
 	 */
 	public List<Blog> selectAllBlogList() {
-		return blogDao.findAll();
+		return blogDao.findAllByOrderByViewCountDesc();
 	}
 
 	/**
@@ -37,14 +34,11 @@ public class BlogService {
 	 * @return キーワードを含むブログ記事のリスト
 	 */
 	public List<Blog> searchBlogsByTitle(String keyword) {
-	    return blogDao.findByTitleContaining(keyword);
+		return blogDao.findByTitleContaining(keyword);
 	}
 
-	
-	
 	/**
-	 * ブログの登録処理を行う。
-	 * 指定されたタイトルのブログが未登録の場合、新規ブログを保存しtrueを返す。
+	 * ブログの登録処理を行う。 指定されたタイトルのブログが未登録の場合、新規ブログを保存しtrueを返す。
 	 * すでに同じタイトルのブログが存在する場合は登録せずfalseを返す。
 	 */
 	public boolean createBlog(String title, String categoryName, String blogImage, String content, Long accountId) {
@@ -57,9 +51,7 @@ public class BlogService {
 	}
 
 	/**
-	 * 編集画面表示時のチェック処理を行う。
-	 * blogIdがnullの場合はnullを返し、
-	 * そうでなければ該当するブログ情報を取得して返す。
+	 * 編集画面表示時のチェック処理を行う。 blogIdがnullの場合はnullを返し、 そうでなければ該当するブログ情報を取得して返す。
 	 */
 	public Blog blogEditCheck(Long blogId) {
 		if (blogId == null) {
@@ -69,16 +61,12 @@ public class BlogService {
 		}
 	}
 
-	/** 
-	 * 更新処理のチェックのblogId
-	 * もし、blogId==nullだったら、更新処理はしない falseを返す
-	 * そうでない場合、更新処理をする
-	 * もし、blog==nullだったら、更新処理はしない falseを返す
-	 * そうでない場合、
-	 * コントローラークラスからもらった、blogIdを使って、編集する前の、データを取得
-	 * 変更するべきところだけ、セッターを使用してデータの更新をする
+	/**
+	 * 更新処理のチェックのblogId もし、blogId==nullだったら、更新処理はしない falseを返す そうでない場合、更新処理をする
+	 * もし、blog==nullだったら、更新処理はしない falseを返す そうでない場合、
+	 * コントローラークラスからもらった、blogIdを使って、編集する前の、データを取得 変更するべきところだけ、セッターを使用してデータの更新をする
 	 * trueを返す
-	 */ 
+	 */
 	public boolean blogUpdate(Long blogId, String title, String categoryName, String blogImage, String content) {
 		if (blogId == null) {
 			return false;
@@ -98,8 +86,7 @@ public class BlogService {
 	}
 
 	/**
-	 * 指定されたブログIDに対応するブログを削除する。
-	 * ブログに関連する画像ファイルも存在すれば削除する。
+	 * 指定されたブログIDに対応するブログを削除する。 ブログに関連する画像ファイルも存在すれば削除する。
 	 * 
 	 * @param blogId 削除対象のブログID
 	 * @return 削除成功ならtrue、blogIdがnull、該当ブログなし、または例外発生時はfalseを返す
@@ -132,17 +119,17 @@ public class BlogService {
 			}
 		}
 	}
-	@Transactional
-	public boolean updateViewCount(Blog blog) {
-	    System.out.println("Trying to update viewCount for blogId: " + blog.getBlogId() + ", viewCount: " + blog.getViewCount());
-	    try {
-	        blogDao.save(blog);
-	        System.out.println("Update success.");
-	        return true;
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return false;
-	    }
+
+	/**
+	 * 閲覧数を1増やして、データベースを更新する。
+	 * 
+	 * getViewCount()メソッドを呼び出し現在viewcountの値もらってその上で+1。
+	 * その後、blogでsetViewCountメソッドを呼び出し、viewcountの値を再設定する。
+	 * 最後blogDaoでsaveメソッドを呼び出し、データベース更新する。
+	 */
+	public void updateViewCount(Blog blog) {
+		blog.setViewCount(blog.getViewCount() + 1);
+		blogDao.save(blog);
 	}
 
 }
