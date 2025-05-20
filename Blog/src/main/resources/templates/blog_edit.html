@@ -52,10 +52,6 @@
                         <div>本文</div>
                         <textarea name="content" th:placeholder="${blog.content}"></textarea>
                     </div>
-					<div class="register-section-details_flex">
-						<textarea id="commentInput" placeholder="コメントを入力してください..."></textarea>
-						<button onclick="submitComment()">投稿</button>
-					</div>
                     <div class="register-section-details_flex">
 						<input type="hidden" name="blogId" th:value="${blog.blogId}">
                         <button class="blog_register_but" name="action" value="update">更新</button>

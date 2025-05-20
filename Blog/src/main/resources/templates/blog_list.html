@@ -10,6 +10,7 @@
 </head>
 
 <script>
+	
 	function thumbsUp(button){
 		const img = button.querySelector("img");
 		const src = img.getAttribute("src");
@@ -21,6 +22,25 @@
 		}
 	}
 	
+	function submitComment(button){
+		const commentBox = button.previousElementSibling;
+		const commentText = commentBox.value.trim();
+	
+	if(commentText == ""){
+		alert("コメントを入力してください...");
+		return;
+	}
+	
+	const commentElement = document.createElement("p");
+	commentElement.textContent = commentText;
+
+	const commentList = button.nextElementSibling;
+	commentList.appendChild(commentElement);
+	
+	commentBox.value = "";
+		
+	}
+		
 </script>
 
 <body>
@@ -61,6 +81,11 @@
                         <p th:text="${blog.content}"></p>
 						<p class="view-count">閲覧数: <span th:text="${blog.viewCount}">0</span></p>
                     </a>
+					<div class="comments" >
+						<textarea id="commentInput" placeholder="コメントを入力してください..."></textarea>
+						<button onclick="submitComment(this)">投稿</button>
+						<div class="comment-list"></div>
+					</div>
 					<button class="thumbs-up" onclick="thumbsUp(this)">
 						<img th:src="@{/img/a1.png}">
 					</button>

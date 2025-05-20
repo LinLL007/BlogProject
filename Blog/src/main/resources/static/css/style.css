@@ -81,8 +81,8 @@ dl dd {
 }
 
 .blog li {
-    width: 350px;
-	height: 500px;
+    width: 450px;
+	height: 700px;
 	position: relative;
     background-color: rgba(179, 180, 206, 0.6);
     border-radius: 20px;
@@ -102,7 +102,7 @@ dl dd {
 }
 
 .blog li h2 {
-text-align: center;
+	text-align: center;
 }
 
 .blog li p {
@@ -111,33 +111,53 @@ text-align: center;
     color: #333;
 }
 
+/* 閲覧数 */
 .blog li .view-count {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 0.9em;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  margin: 0;
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	background: rgba(255, 255, 255, 0.2);
+	padding: 3px 8px;
+	border-radius: 4px;
+	font-size: 0.9em;
+	box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	margin: 0;
+}
+
+/* コメント */
+.blog li .comments {
+	position: absolute;
+	bottom: 20px;
+	left: 210px;
+	background: rgba(255, 255, 255, 0.2);
+	padding: 3px 8px;
+	border-radius: 4px;
+	font-size: 0.7em;
+	box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	margin: 0;
+}
+
+.comment-list {
+	max-height: 6em; 
+	overflow-y: auto;
+	margin-top: 10px;
 }
 
 /* いいね機能 */
 .blog li .thumbs-up {
-  height: 25px;
-  width: 25px;
-  bottom: 15px;
-  right: 15px;
-  position: absolute;
-  cursor: pointer;
+	height: 25px;
+	width: 25px;
+	bottom: 15px;
+	right: 15px;
+	position: absolute;
+	cursor: pointer;
 }
 
 .blog li .thumbs-up img {
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
-  transition: transform 0.3s ease;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	transition: transform 0.3s ease;
 }
 
 .blog li .thumbs-up:hover img{
@@ -167,7 +187,6 @@ text-align: center;
     border: none;
     border-radius: 4px;
     font-size: 16px;
-
 }
 
 .blog_register_but:hover {
