@@ -15,7 +15,7 @@
         <div class="inner">
             <div class="logo">
                 <a href="#"><img th:src="@{img/blog.png}" alt=""></a>
-                <h2>よこそう～</h2>
+                <h2>ようこそ～</h2>
 				<p th:text="${accountName}" class="accountName"></p>
             </div>
             <ul class="list">
@@ -32,7 +32,7 @@
     <main>
         <section>
             <div class="welcome-box">
-                <h2>Blog Update</h2>
+                <h2>ブログ編集</h2>
             </div>
             <form th:action="@{/blog/edit/process}"  method="post" enctype="multipart/form-data">
                 <div class="register-section-details">
