@@ -105,7 +105,7 @@ public class BlogService {
 					String imageFileName = blog.getBlogImage();
 					if (imageFileName != null && !imageFileName.isEmpty()) {
 						// 画像のパスを作成
-						Path imagePath = Paths.get("src/main/resources/static/blog-img", imageFileName);
+						 Path imagePath = Paths.get("upload", imageFileName);
 						// 画像ファイルを削除
 						Files.deleteIfExists(imagePath);
 					}

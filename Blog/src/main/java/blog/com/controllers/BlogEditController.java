@@ -123,10 +123,14 @@ public class BlogEditController {
 		         * blogImage から取得したファイル名を、日時の文字列と連結します。
 		         */
 				String fileName = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-").format(new Date())
-						+ blogImage.getOriginalFilename();
+				        + blogImage.getOriginalFilename();
 				// 画像ファイルを保存します
 				try {
-					Files.copy(blogImage.getInputStream(), Path.of("src/main/resources/static/blog-img/" + fileName));
+					Path uploadDir = Path.of("upload");
+					if (!Files.exists(uploadDir)) {
+						Files.createDirectories(uploadDir);
+					}
+					  Files.copy(blogImage.getInputStream(), uploadDir.resolve(fileName));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

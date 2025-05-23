@@ -99,7 +99,11 @@ public class BlogRegisterController {
 					+ blogImage.getOriginalFilename();
 			// 画像ファイルを保存します
 			try {
-				Files.copy(blogImage.getInputStream(), Path.of("src/main/resources/static/blog-img/" + fileName));
+				Path uploadDir = Path.of("upload");
+				if (!Files.exists(uploadDir)) {
+				    Files.createDirectories(uploadDir);
+				}
+				Files.copy(blogImage.getInputStream(), uploadDir.resolve(fileName));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

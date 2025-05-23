@@ -38,11 +38,11 @@
                 <div class="register-section-details">
                     <div class="register-section-details_flex">
                         <div>タイトル</div>
-                        <input type="text" name="title" id="title" th:placeholder="${blog.title}">
+                        <input type="text" name="title" id="title" th:value="${blog.title}">
                     </div>
                     <div class="register-section-details_flex">
                         <div>カテゴリ</div>
-                        <input type="text" name="categoryName" id="categoryName" th:placeholder="${blog.categoryName}">
+                        <input type="text" name="categoryName" id="categoryName" th:value="${blog.categoryName}">
                     </div>
                     <div class="image-upload-transparent">
                         <div>画像</div>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="register-section-details_flex">
                         <div>本文</div>
-                        <textarea name="content" th:placeholder="${blog.content}"></textarea>
+                        <textarea name="content" th:text="${blog.content}"></textarea>
                     </div>
                     <div class="register-section-details_flex">
 						<input type="hidden" name="blogId" th:value="${blog.blogId}">
