@@ -46,7 +46,7 @@ public class RegisterController {
 			return "login.html";
 		} else {
 			model.addAttribute("error", "メールアドレスは既に登録されています!");
-			return "register";
+			return "register.html";
 		}
 	}
 
